@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModaShop Tarragona | Catálogo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id="space-canvas"></canvas>
+
+    <nav class="glass-nav">
+        <div class="brand">ModaShop <span>Tarragona</span></div>
+        <div class="nav-actions">
+            <select id="public-category-filter" class="glass-select">
+                <option value="all">Todas las categorías</option>
+            </select>
+            <button id="btn-logout" class="btn outline hidden">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <main id="public-view" class="view active">
+        <header class="hero fade-in">
+            <h1>Recien Añadidos</h1>
+            <p>¡Compralos Antes De Que Se Agoten!</p>
+        </header>
+        <section class="catalog">
+            <div id="product-grid" class="grid fade-in">
+            </div>
+        </section>
+    </main>
+
+    <main id="admin-view" class="view hidden">
+        <header class="hero fade-in">
+            <h2>Panel de Control Espacial</h2>
+            <p>Gestión de inventario y categorías.</p>
+        </header>
+        
+        <div class="admin-panels fade-in">
+            <section class="admin-card glass-panel">
+                <h3>Categorías</h3>
+                <form id="form-category" class="flex-form">
+                    <input type="text" id="new-category-name" placeholder="Nueva categoría" required>
+                    <button type="submit" class="btn primary">Añadir</button>
+                </form>
+                <ul id="admin-category-list" class="item-list"></ul>
+            </section>
+
+            <section class="admin-card glass-panel wide">
+                <h3>Inventario de Productos</h3>
+                <button id="btn-show-add-product" class="btn primary mb-4">Añadir Nuevo Producto</button>
+                <div class="table-container">
+                    <table class="glass-table">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Categoría</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-product-list">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ModaShop Tarragona. Todos los derechos reservados.</p>
+        <button id="btn-show-login" class="btn-text">Entrar como admin</button>
+    </footer>
+
+    <div id="modal-login" class="modal hidden">
+        <div class="modal-content glass-panel">
+            <span class="close-modal">&times;</span>
+            <h3 id="login-title">Acceso Restringido</h3>
+            
+            <form id="form-login">
+                <input type="text" id="login-user" placeholder="Usuario" required>
+                <input type="password" id="login-pass" placeholder="Contraseña" required>
+                <button type="submit" class="btn primary full-width">Ingresar</button>
+                <p id="login-error" class="error-text hidden">Credenciales incorrectas.</p>
+            </form>
+
+            <form id="form-change-pass" class="hidden">
+                <p class="warning-text">Por seguridad, debes cambiar la contraseña por defecto.</p>
+                <input type="password" id="new-admin-pass" placeholder="Nueva contraseña" required>
+                <button type="submit" class="btn primary full-width">Actualizar e Ingresar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal-product" class="modal hidden">
+        <div class="modal-content glass-panel">
+            <span class="close-modal">&times;</span>
+            <h3 id="product-modal-title">Gestión de Producto</h3>
+            <form id="form-product">
+                <input type="hidden" id="prod-id">
+                <input type="text" id="prod-name" placeholder="Nombre del producto" required>
+                <select id="prod-category" required>
+                </select>
+                <textarea id="prod-desc" placeholder="Descripción breve" rows="3" required></textarea>
+                <input type="url" id="prod-img" placeholder="URL de la imagen" required>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="prod-stock" checked>
+                    <label for="prod-stock">En stock (Disponible)</label>
+                </div>
+                <button type="submit" class="btn primary full-width">Guardar Producto</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
